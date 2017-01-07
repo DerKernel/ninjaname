@@ -104,6 +104,7 @@ string demorph(string name)
     	   	    break;
     	   	}
     	   }
+    	   if (!found) throw "Invalid input.";
     	}
     	found = false;
     }
