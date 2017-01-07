@@ -3,6 +3,7 @@
 // It does so by replacing single letters of the firstname with japanese syllables.
 
 #include "name.h"
+#include "file_operations.h"
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -17,7 +18,8 @@ int main()
         cout << "Menu: \n";
         cout << "1 - Morph your firstname into a Ninja name.\n";
         cout << "2 - Demorph your Ninja name back into your firstname. \n";
-        cout << "3 - Exit.\n";
+        cout << "3 - Look up history. \n";
+        cout << "4 - Exit.\n";
 
         string test;
         getline(cin, test);
@@ -34,6 +36,8 @@ int main()
             string genninja = morph(firstname);
 
             cout << genninja << endl;
+
+            writeFile("history.txt", genninja + '\n');
         }
 
         else if (test.compare("2") == 0)
@@ -54,14 +58,20 @@ int main()
             } catch (const char * msg) { cerr << msg << endl; }
         }
 
-        else if (test.compare("3") == 0)
+	else if (test.compare("3") == 0)
+	{
+	    readFile("history.txt");
+	}
+
+        else if (test.compare("4") == 0)
         {
             cout << "Program will exit now.\n";
             menu  = false;
         }
+
         else
         {
-                cout << "Invalid input. Repeat input.\n";
+            cout << "Invalid input. Repeat input.\n";
         }
     }
     return 0;
