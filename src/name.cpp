@@ -41,7 +41,7 @@ string morph(char name[])
     "LU", "JI", "RI", "KI", "ZU",
     "ME", "TA", "RIN", "TO", "MO",
     "NO", "KE", "SHI", "ARI", "CHI",
-    "DO", "RU", "MEI", "NA", "FU", "Zi"
+    "DO", "RU", "MEI", "NA", "FU", "ZI"
     };
 
     for (int index = 0; index < charsize; index++)
@@ -60,7 +60,7 @@ string demorph(string name)
     "LU", "JI", "RI", "KI", "ZU",
     "ME", "TA", "RIN", "TO", "MO",
     "NO", "KE", "SHI", "ARI", "CHI",
-    "DO", "RU", "MEI", "NA", "FU", "Zi"
+    "DO", "RU", "MEI", "NA", "FU", "ZI"
     };
 
     string result = "";
@@ -89,12 +89,21 @@ string demorph(string name)
     	   	    break;
     	   	}
     	   }
-    	   if (next == 3)
-    	   {
-    	   	throw "Invalid input.";
-    	   }
     	   tmp = name.substr(it, 3);
-    	   next = 3;
+    	   for (int index = 0; index < 26; index++)
+    	   {
+    	   	if (tmp.compare(syllables[index]) == 0)
+    	   	{
+    	   	    stringstream ss;
+    	   	    string tmp2;
+    	   	    ss << char (toascii(index+65));
+    	   	    ss >> tmp2;
+    	   	    result.append(tmp2);
+    	   	    it = it + next + 1;
+    	   	    found = true;
+    	   	    break;
+    	   	}
+    	   }
     	}
     	found = false;
     }
